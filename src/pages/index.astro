@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+// const data = await Astro.glob('./posts/*.md');
+const data = await fetch(import.meta.env.FETCH_URL);
+const posts = await data.json();
+---
+<Layout title="Homebase">
+<h1>World of Life!</h1>
+
+{posts.map((post) => (
+  <div>
+	<a href={`posts/${post.id}`}><h2>{post.title}</h2></a>
+
+  </div>
+))}
+</Layout>

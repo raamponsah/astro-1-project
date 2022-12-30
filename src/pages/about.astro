@@ -1,0 +1,26 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+// const posts = await Astro.glob('./posts/post-1.md');
+import { contentfulClient } from "../lib/contentful";
+import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
+import type { Document } from "@contentful/rich-text-types";
+interface Post{
+    title:String,
+    content:String
+}
+const posts = await contentfulClient.getEntries<Post>({content_type:'post'})
+
+---
+
+<Layout title="About">
+    <h1>About</h1>
+    <p>My name is <strong>John Doe</strong> and I'm a web developer.</p>
+    {posts.items.map((item)=>{
+        return (
+            <h3>{item.fields.title}</h3>
+            <article set:html={documentToHtmlString(item.fields.content)}></article>
+         
+        )
+    })}
+</Layout>
