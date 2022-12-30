@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/BlogPost.astro
+layout: ../../layouts/Layout.astro
 title: Single Page Apps
 description: Something good...
 publishDate: 2022-12-30T14:46:28.208Z
